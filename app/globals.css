@@ -83,13 +83,13 @@
     font-size: clamp(2rem, 4.5vw, 3.75rem);
   }
 
-  /* Gold-filled pill button */
+  /* Azure-filled pill button (primary CTA) */
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body text-sm font-medium tracking-wide text-ink transition-all duration-500 ease-smooth hover:bg-gold-deep hover:text-white hover:shadow-[0_12px_40px_-12px_rgba(138,106,30,0.55)];
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-azure px-7 py-3.5 font-body text-sm font-medium tracking-wide text-white transition-all duration-500 ease-smooth hover:bg-azure-deep hover:shadow-[0_14px_40px_-12px_rgba(53,133,199,0.6)];
   }
   /* Outlined ghost button */
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 px-7 py-3.5 font-body text-sm font-medium tracking-wide text-ink transition-all duration-500 ease-smooth hover:border-gold hover:bg-gold/5;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-azure/45 px-7 py-3.5 font-body text-sm font-medium tracking-wide text-ink transition-all duration-500 ease-smooth hover:border-azure hover:bg-azure/5;
   }
 
   /* Thin gold hairline */

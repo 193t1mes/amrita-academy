@@ -38,6 +38,13 @@ const config: Config = {
           soft: "#E3D2A6",
           mist: "#F1E8D2",
         },
+        // Azure (голубой) — accent used on buttons / pills.
+        azure: {
+          DEFAULT: "#3585C7",
+          deep: "#265E91",
+          soft: "#CFE4F5",
+          mist: "#EAF3FB",
+        },
         // Ink — warm near-black for type, with a muted body tone.
         ink: {
           DEFAULT: "#221E18",

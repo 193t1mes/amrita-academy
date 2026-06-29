@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { Parallax } from "@/components/Parallax";
 import { HERO } from "@/lib/content";
 import { asset } from "@/lib/asset";
@@ -38,8 +38,8 @@ export function Hero() {
         </video>
       </Parallax>
 
-      {/* Luminous overlay for readability + smooth blend into the next section */}
-      <div className="absolute inset-0 bg-gradient-to-b from-canvas/80 via-ivory/60 to-canvas" />
+      {/* Light overlay — lets the video read as a backdrop while keeping text legible */}
+      <div className="absolute inset-0 bg-gradient-to-b from-canvas/70 via-ivory/45 to-canvas" />
       <div className="absolute inset-0 bg-radial-gold" />
 
       <motion.div
@@ -49,7 +49,14 @@ export function Hero() {
         className="container relative z-10 flex flex-col items-center pt-24 text-center"
       >
         <motion.div variants={item} className="animate-float">
-          <AnimatedLogo className="mb-8 h-24 w-24 sm:h-28 sm:w-28" />
+          <Image
+            src="/assets/logo.jpg"
+            width={240}
+            height={240}
+            alt="AMRITA"
+            priority
+            className="mb-6 h-28 w-28 mix-blend-multiply sm:h-36 sm:w-36"
+          />
         </motion.div>
 
         <motion.span variants={item} className="eyebrow mb-6">
@@ -57,8 +64,7 @@ export function Hero() {
         </motion.span>
 
         <motion.h1 variants={item} className="display-1">
-          {HERO.titleTop}{" "}
-          <span className="text-gradient-gold">{HERO.titleBottom}</span>
+          AMRITA
         </motion.h1>
 
         <motion.p
