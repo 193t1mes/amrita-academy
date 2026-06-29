@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "amrita-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "amrita-html",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", "../amrita-live-site", "-p", "4322", "-c-1"],
+      "port": 4322
+    }
+  ]
+}

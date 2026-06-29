@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Palette sampled from the AMRITA logo (gold on white) + founder photo. */
+  --canvas: #ffffff;
+  --ivory: #fbf8f2;
+  --sand: #f5eee1;
+  --gold: #c2a14e;
+  --gold-deep: #8a6a1e;
+  --gold-soft: #e3d2a6;
+  --ink: #221e18;
+  --ink-soft: #6e6556;
+  --line: #ece3d1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Offset in-page anchors so the fixed 80px header never overlaps a section. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-body antialiased;
+    font-feature-settings: "kern", "liga", "calt";
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-medium tracking-tight text-ink;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--gold-soft);
+    color: var(--ink);
+  }
+
+  /* Slim gold scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-soft) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--gold-soft);
+    border-radius: 9999px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Uppercase, letter-spaced label with a gold dot — used above each section title. */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-body text-xs uppercase tracking-eyebrow text-gold-deep;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-[6px] w-[6px] rotate-45 bg-gold;
+  }
+
+  /* Display heading scale */
+  .display-1 {
+    @apply font-display font-medium leading-[0.95] tracking-tight;
+    font-size: clamp(2.75rem, 8vw, 6.5rem);
+  }
+  .display-2 {
+    @apply font-display font-medium leading-[1.05] tracking-tight;
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+  }
+
+  /* Gold-filled pill button */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body text-sm font-medium tracking-wide text-ink transition-all duration-500 ease-smooth hover:bg-gold-deep hover:text-white hover:shadow-[0_12px_40px_-12px_rgba(138,106,30,0.55)];
+  }
+  /* Outlined ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 px-7 py-3.5 font-body text-sm font-medium tracking-wide text-ink transition-all duration-500 ease-smooth hover:border-gold hover:bg-gold/5;
+  }
+
+  /* Thin gold hairline */
+  .hairline {
+    @apply h-px w-full bg-line;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(100deg, var(--gold-deep), var(--gold) 45%, var(--gold-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-radial-gold {
+    background: radial-gradient(
+      60% 60% at 50% 40%,
+      rgba(194, 161, 78, 0.1),
+      transparent 70%
+    );
+  }
+
+  .section-y {
+    @apply py-24 md:py-32 lg:py-40;
+  }
+}
+
+/* Respect reduced-motion: drop transforms/animations for sensitive users. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
