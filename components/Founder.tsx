@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 import { Parallax } from "@/components/Parallax";
 import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { FOUNDER } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 /** Founder — gallery-framed portrait beside an intimate, signed introduction. */
 export function Founder() {
@@ -39,11 +39,12 @@ export function Founder() {
 
             <div className="relative overflow-hidden rounded-3xl shadow-[0_24px_70px_-40px_rgba(34,30,24,0.22)]">
               <Parallax distance={48}>
-                <Image
-                  src="/assets/founder.jpg"
+                <img
+                  src={asset("/assets/founder.jpg")}
                   width={900}
                   height={1200}
                   alt="Основатель Академии Амрита"
+                  loading="lazy"
                   className="h-full w-full scale-105 rounded-3xl object-cover"
                 />
               </Parallax>

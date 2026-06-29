@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { Parallax } from "@/components/Parallax";
 import { HERO } from "@/lib/content";
@@ -49,12 +48,11 @@ export function Hero() {
         className="container relative z-10 flex flex-col items-center pt-24 text-center"
       >
         <motion.div variants={item} className="animate-float">
-          <Image
-            src="/assets/logo.jpg"
+          <img
+            src={asset("/assets/logo.jpg")}
             width={240}
             height={240}
             alt="AMRITA"
-            priority
             className="mb-6 h-28 w-28 mix-blend-multiply sm:h-36 sm:w-36"
           />
         </motion.div>

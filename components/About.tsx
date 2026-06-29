@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 import { Eyebrow } from "@/components/primitives";
 import { ABOUT, HERO } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 /**
  * About — Zenith-style centrepiece: a framed portrait standing over a large
@@ -46,8 +46,8 @@ export function About() {
 
           {/* Portrait — base fades out so the wordmark reads through it */}
           <Reveal className="relative z-10">
-            <Image
-              src="/assets/founder.jpg"
+            <img
+              src={asset("/assets/founder.jpg")}
               width={620}
               height={780}
               alt="Основатель Академии Амрита"
