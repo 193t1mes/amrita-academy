@@ -1,5 +1,6 @@
 import { SectionHeading } from "@/components/primitives";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
+import { ProgramsSnake } from "@/components/ProgramsSnake";
 import { PROGRAMS, PROGRAMS_SECTION } from "@/lib/content";
 
 /** Editorial numbered list of the Academy's accompaniment programs. */
@@ -12,7 +13,10 @@ export function Programs() {
       {/* Faint gold glow drifting in from the right margin */}
       <div className="pointer-events-none absolute -right-32 top-1/3 h-[28rem] w-[28rem] bg-radial-gold" />
 
-      <div className="container relative">
+      {/* Golden serpentine drawn on scroll */}
+      <ProgramsSnake />
+
+      <div className="container relative z-10">
         <SectionHeading
           eyebrow={PROGRAMS_SECTION.eyebrow}
           title={PROGRAMS_SECTION.title}
