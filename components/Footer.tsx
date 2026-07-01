@@ -1,6 +1,7 @@
 import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 import { BRAND, FOOTER, NAV_LINKS } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 /** Refined dark footer: brand mark, navigation, contact links and a hairline bottom bar. */
 export function Footer() {
@@ -8,11 +9,24 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-ink text-ivory">
-      {/* Faint gold halo + watermark logo for depth */}
-      <div className="pointer-events-none absolute inset-0 bg-radial-gold opacity-40" />
-      <div className="pointer-events-none absolute -right-24 -top-24 hidden opacity-[0.04] lg:block">
-        <AnimatedLogo className="h-[34rem] w-[34rem]" spin={false} />
+      {/* Background photo (desert · AMRITA) with a deep overlay for legibility */}
+      <div className="pointer-events-none absolute inset-0">
+        <img
+          src={asset("/assets/footer-bg.jpg")}
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(20,18,14,0.80) 0%, rgba(20,18,14,0.86) 50%, rgba(20,18,14,0.94) 100%)",
+          }}
+        />
       </div>
+      {/* Faint gold halo for depth */}
+      <div className="pointer-events-none absolute inset-0 bg-radial-gold opacity-30" />
 
       <div className="container relative z-10 py-20 md:py-28">
         <div className="grid gap-14 lg:grid-cols-[1.5fr_1fr_1fr]">
