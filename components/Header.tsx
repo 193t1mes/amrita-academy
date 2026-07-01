@@ -9,6 +9,7 @@ import { cn } from "@/lib/asset";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -30,11 +31,16 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-smooth",
         scrolled || open
-          ? "border-b border-line/70 bg-canvas/85 backdrop-blur-md"
+          ? "border-b border-line/70 bg-canvas/85 shadow-[0_12px_34px_-20px_rgba(34,30,24,0.5)] backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="container flex h-20 items-center justify-between">
+      <div
+        className={cn(
+          "container flex items-center justify-between transition-[height] duration-500 ease-smooth",
+          scrolled ? "h-16" : "h-20",
+        )}
+      >
         <a href="#hero" className="group flex items-center gap-3" aria-label="AMRITA ACADEMY — наверх">
           <AnimatedLogo className="h-11 w-11 shrink-0" spin />
           <span className="font-display text-lg font-medium tracking-wide text-ink">
@@ -42,15 +48,25 @@ export function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-9 lg:flex">
+        <nav
+          className="relative hidden items-center gap-1 lg:flex"
+          onMouseLeave={() => setHovered(null)}
+        >
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative font-body text-sm font-medium text-ink/80 transition-colors hover:text-ink"
+              onMouseEnter={() => setHovered(link.href)}
+              className="relative rounded-full px-4 py-2 font-body text-sm font-medium text-ink/75 transition-colors duration-300 hover:text-ink"
             >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 ease-smooth group-hover:w-full" />
+              {hovered === link.href && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 -z-10 rounded-full bg-gold/15"
+                  transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                />
+              )}
+              <span className="relative z-10">{link.label}</span>
             </a>
           ))}
         </nav>

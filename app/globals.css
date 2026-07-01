@@ -92,6 +92,67 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-azure/45 px-7 py-3.5 font-body text-sm font-medium tracking-wide text-ink transition-all duration-500 ease-smooth hover:border-azure hover:bg-azure/5;
   }
 
+  /* — Origin-style hover: colour fill expands from the centre, gentle lift.
+       Applies to every .btn-gold / .btn-ghost across the site. */
+  .btn-gold,
+  .btn-ghost {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.45s ease,
+      border-color 0.45s ease,
+      box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-gold > *,
+  .btn-ghost > * {
+    position: relative;
+    z-index: 1;
+  }
+  .btn-gold::before,
+  .btn-ghost::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 9999px;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: width, height;
+  }
+  .btn-gold::before {
+    background: #265e91;
+  }
+  .btn-ghost::before {
+    background: #3585c7;
+  }
+  .btn-gold:hover::before,
+  .btn-gold:focus-visible::before,
+  .btn-ghost:hover::before,
+  .btn-ghost:focus-visible::before {
+    width: 22rem;
+    height: 22rem;
+  }
+  .btn-gold:hover,
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+  }
+  .btn-ghost:hover,
+  .btn-ghost:focus-visible {
+    color: #fff;
+    border-color: transparent;
+  }
+  .btn-gold:active,
+  .btn-ghost:active {
+    transform: translateY(0) scale(0.985);
+  }
+
   /* Thin gold hairline */
   .hairline {
     @apply h-px w-full bg-line;
