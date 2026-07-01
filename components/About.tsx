@@ -6,9 +6,10 @@ import { asset } from "@/lib/asset";
 /**
  * Intro block after the hero video — one cohesive composition:
  * left  — "Пространства Академии Амрита" + intro
- * centre — founder portrait over the big AMRITA ACADEMY wordmark
+ * centre — founder portrait
  * right — founder bio (Елена Коробова)
- * The portrait sits on white that matches the section, so only the figure reads.
+ * Below, the big AMRITA ACADEMY wordmark (behind the portrait's feet, clear of
+ * the text), then a single CTA. Portrait sits on white matching the section.
  */
 export function About() {
   return (
@@ -18,17 +19,8 @@ export function About() {
       style={{ background: "#FDFDFD" }}
     >
       <div className="container relative">
-        {/* Big wordmark spanning the full width, behind everything */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-0 left-1/2 z-0 -translate-x-1/2 translate-y-2 whitespace-nowrap font-display font-medium leading-none tracking-tight text-gold-soft"
-          style={{ fontSize: "clamp(2.25rem, 14vw, 11rem)" }}
-        >
-          AMRITA ACADEMY
-        </span>
-
-        {/* 3-column composition, vertically centred around the figure */}
-        <div className="relative z-10 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-12">
+        {/* 3-column composition (above the wordmark) */}
+        <div className="relative z-10 grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           {/* LEFT — spaces */}
           <Reveal className="order-2 flex flex-col gap-5 lg:order-1 lg:items-end lg:text-right">
             <h2 className="display-2">{SPACES.title}</h2>
@@ -54,8 +46,8 @@ export function About() {
               className="w-[min(78vw,26rem)] object-contain"
               style={{
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, #000 84%, transparent)",
-                maskImage: "linear-gradient(to bottom, #000 84%, transparent)",
+                  "linear-gradient(to bottom, #000 86%, transparent)",
+                maskImage: "linear-gradient(to bottom, #000 86%, transparent)",
               }}
             />
           </Reveal>
@@ -86,6 +78,24 @@ export function About() {
             </div>
           </Reveal>
         </div>
+
+        {/* Big wordmark — sits behind the portrait's base, below the text */}
+        <div className="relative z-0 -mt-[clamp(1rem,3vw,3rem)] flex justify-center">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none whitespace-nowrap font-display font-medium leading-none tracking-tight text-gold-soft"
+            style={{ fontSize: "clamp(2rem, 13vw, 10rem)" }}
+          >
+            AMRITA ACADEMY
+          </span>
+        </div>
+
+        {/* CTA */}
+        <Reveal className="mt-12 flex justify-center md:mt-16">
+          <a href="#programs" className="btn-gold">
+            Подобрать программу
+          </a>
+        </Reveal>
       </div>
     </section>
   );

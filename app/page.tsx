@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Course } from "@/components/Course";
 import { Directions } from "@/components/Directions";
 import { Programs } from "@/components/Programs";
 import { Events } from "@/components/Events";
@@ -17,6 +18,7 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <Course />
         <Directions />
         <Programs />
         <Events />
