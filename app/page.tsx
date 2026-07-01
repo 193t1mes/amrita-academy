@@ -4,6 +4,7 @@ import { About } from "@/components/About";
 import { Course } from "@/components/Course";
 import { Directions } from "@/components/Directions";
 import { Programs } from "@/components/Programs";
+import { Mission } from "@/components/Mission";
 import { Events } from "@/components/Events";
 import { Philosophy } from "@/components/Philosophy";
 import { Contact } from "@/components/Contact";
@@ -21,6 +22,7 @@ export default function Home() {
         <Directions />
         <Course />
         <Programs />
+        <Mission />
         <Events />
         <Philosophy />
         <Contact />
