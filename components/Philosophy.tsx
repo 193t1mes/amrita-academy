@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/Reveal";
 import { GoldRule } from "@/components/primitives";
+import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { PHILOSOPHY } from "@/lib/content";
-import { asset } from "@/lib/asset";
 
 /** The dramatic dark moment: a single luminous statement over a gold watermark. */
 export function Philosophy() {
@@ -10,23 +10,6 @@ export function Philosophy() {
       id="philosophy"
       className="section-y relative overflow-hidden bg-ink text-ivory"
     >
-      {/* Background photo + deep overlay for legibility */}
-      <div className="absolute inset-0">
-        <img
-          src={asset("/assets/philosophy-bg.jpg")}
-          alt=""
-          aria-hidden="true"
-          className="h-full w-full object-contain object-center"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(20,18,14,0.42) 0%, rgba(20,18,14,0.60) 18%, rgba(20,18,14,0.85) 46%, rgba(20,18,14,0.90) 100%)",
-          }}
-        />
-      </div>
-
       {/* Soft radial gold glow for depth */}
       <div
         aria-hidden="true"
@@ -36,6 +19,14 @@ export function Philosophy() {
             "radial-gradient(60% 55% at 50% 42%, rgba(194,161,78,0.16), transparent 70%)",
         }}
       />
+
+      {/* Faint brand mark watermark behind the content */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+      >
+        <AnimatedLogo className="w-[680px] max-w-none opacity-[0.06]" />
+      </div>
 
       <div className="container relative z-10">
         <Reveal className="mx-auto flex max-w-4xl flex-col items-center text-center">
