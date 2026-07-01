@@ -6,9 +6,10 @@ import { PROGRAMS } from "@/lib/content";
 import { cn } from "@/lib/asset";
 
 /**
- * Central golden "journey" line that draws itself on scroll, with the program
- * steps as nodes (dot + number + title) alternating on either side — matching
- * the "Как проходит обучение" reference.
+ * Central golden "journey" line that draws itself on scroll. The line is one
+ * SOLID stroke; it's revealed top→down by an animated clip rectangle (no dashes),
+ * so it grows continuously as you scroll. It starts on the first dot and ends
+ * on the last. Step nodes alternate on either side.
  */
 
 // Dot positions in the 0..100 viewBox (x, y). Sides alternate around centre.
@@ -18,22 +19,23 @@ const NODES = [
   { x: 60, y: 84, side: "right" as const },
 ];
 
-// Path: enters from the top, threads each dot, exits at the bottom.
-const PATH =
-  "M60 2 L60 16 C 60 34, 40 34, 40 50 C 40 66, 60 66, 60 84 L60 98";
+// Path starts on the first dot, threads the middle dot, ends on the last dot.
+const PATH = "M60 16 C 60 34, 40 34, 40 50 C 40 66, 60 66, 60 84";
 
 export function ProgramsJourney() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.85", "end 0.45"],
+    offset: ["start 0.8", "end 0.5"],
   });
-  const pathLength = useTransform(scrollYProgress, [0, 1], [0.012, 1]);
 
-  // Each node fades/pops in as the drawn line reaches it.
-  const d0 = useTransform(scrollYProgress, [0.08, 0.2], [0, 1]);
-  const d1 = useTransform(scrollYProgress, [0.42, 0.54], [0, 1]);
-  const d2 = useTransform(scrollYProgress, [0.76, 0.88], [0, 1]);
+  // Reveal curtain height (viewBox units): from the first dot down past the last.
+  const revealH = useTransform(scrollYProgress, [0, 1], [16, 88]);
+
+  // Nodes pop in as the line reaches them.
+  const d0 = useTransform(scrollYProgress, [0.0, 0.06], [0, 1]);
+  const d1 = useTransform(scrollYProgress, [0.42, 0.5], [0, 1]);
+  const d2 = useTransform(scrollYProgress, [0.9, 0.97], [0, 1]);
   const reveal = [d0, d1, d2];
 
   return (
@@ -41,29 +43,36 @@ export function ProgramsJourney() {
       ref={ref}
       className="relative mx-auto mt-12 h-[44rem] w-full max-w-4xl sm:h-[50rem] md:mt-16 lg:h-[58rem]"
     >
-      {/* The golden line */}
       <svg
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         className="absolute inset-0 h-full w-full"
       >
+        <defs>
+          <clipPath id="journey-reveal" clipPathUnits="userSpaceOnUse">
+            <motion.rect x={0} y={0} width={100} height={revealH} />
+          </clipPath>
+        </defs>
+
+        {/* faint always-on track */}
         <path
           d={PATH}
           fill="none"
           stroke="#C2A14E"
-          strokeOpacity="0.15"
+          strokeOpacity="0.16"
           strokeWidth="1.5"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
         />
-        <motion.path
+        {/* solid gold line, revealed top→down by the clip */}
+        <path
           d={PATH}
           fill="none"
           stroke="#C2A14E"
-          strokeWidth="2"
+          strokeWidth="2.5"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          style={{ pathLength }}
+          clipPath="url(#journey-reveal)"
         />
       </svg>
 
