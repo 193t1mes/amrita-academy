@@ -92,12 +92,19 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-azure/45 px-7 py-3.5 font-body text-sm font-medium tracking-wide text-ink transition-all duration-500 ease-smooth hover:border-azure hover:bg-azure/5;
   }
 
-  /* — Origin-style hover: colour fill expands from the centre, gentle lift.
+  /* — Shader-style buttons: a continuously flowing gradient sheen + gentle lift.
        Applies to every .btn-gold / .btn-ghost across the site. */
+  @keyframes btn-shader {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
   .btn-gold,
   .btn-ghost {
     position: relative;
-    isolation: isolate;
     overflow: hidden;
     transition:
       transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -105,48 +112,42 @@
       border-color 0.45s ease,
       box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .btn-gold > *,
-  .btn-ghost > * {
-    position: relative;
-    z-index: 1;
-  }
-  .btn-gold::before,
-  .btn-ghost::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 50%;
-    top: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 9999px;
-    transform: translate(-50%, -50%);
-    transition:
-      width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-      height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: width, height;
-  }
-  .btn-gold::before {
-    background: #265e91;
-  }
-  .btn-ghost::before {
-    background: #3585c7;
-  }
-  .btn-gold:hover::before,
-  .btn-gold:focus-visible::before,
-  .btn-ghost:hover::before,
-  .btn-ghost:focus-visible::before {
-    width: 22rem;
-    height: 22rem;
+  /* primary — always-on azure shader */
+  .btn-gold {
+    background-image: linear-gradient(
+      110deg,
+      #265e91 0%,
+      #3585c7 22%,
+      #6cb6ea 42%,
+      #3585c7 62%,
+      #265e91 100%
+    );
+    background-size: 220% 100%;
+    animation: btn-shader 7s linear infinite;
   }
   .btn-gold:hover,
-  .btn-ghost:hover {
+  .btn-gold:focus-visible {
     transform: translateY(-2px);
+    animation-duration: 3.5s;
+  }
+  /* ghost — the same shader flows in on hover */
+  .btn-ghost {
+    background-size: 220% 100%;
   }
   .btn-ghost:hover,
   .btn-ghost:focus-visible {
     color: #fff;
     border-color: transparent;
+    transform: translateY(-2px);
+    background-image: linear-gradient(
+      110deg,
+      #265e91 0%,
+      #3585c7 22%,
+      #6cb6ea 42%,
+      #3585c7 62%,
+      #265e91 100%
+    );
+    animation: btn-shader 4s linear infinite;
   }
   .btn-gold:active,
   .btn-ghost:active {

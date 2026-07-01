@@ -16,13 +16,13 @@ export function Philosophy() {
           src={asset("/assets/philosophy-bg.jpg")}
           alt=""
           aria-hidden="true"
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-contain object-center"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(20,18,14,0.84) 0%, rgba(20,18,14,0.80) 45%, rgba(20,18,14,0.90) 100%)",
+              "linear-gradient(180deg, rgba(20,18,14,0.42) 0%, rgba(20,18,14,0.60) 18%, rgba(20,18,14,0.85) 46%, rgba(20,18,14,0.90) 100%)",
           }}
         />
       </div>
