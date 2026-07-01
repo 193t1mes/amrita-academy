@@ -89,13 +89,6 @@ export function About() {
             AMRITA ACADEMY
           </span>
         </div>
-
-        {/* CTA */}
-        <Reveal className="mt-12 flex justify-center md:mt-16">
-          <a href="#programs" className="btn-gold">
-            Подобрать программу
-          </a>
-        </Reveal>
       </div>
     </section>
   );

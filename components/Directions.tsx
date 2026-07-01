@@ -1,5 +1,5 @@
 import { SectionHeading } from "@/components/primitives";
-import { Stagger, StaggerItem } from "@/components/Reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 import { SacredIcon } from "@/components/SacredIcons";
 import { DIRECTIONS, DIRECTIONS_SECTION } from "@/lib/content";
 
@@ -54,6 +54,12 @@ export function Directions() {
             </StaggerItem>
           ))}
         </Stagger>
+
+        <Reveal className="mt-14 flex justify-center md:mt-16">
+          <a href="#programs" className="btn-gold">
+            Подобрать программу
+          </a>
+        </Reveal>
       </div>
     </section>
   );

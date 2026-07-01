@@ -18,8 +18,8 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Course />
         <Directions />
+        <Course />
         <Programs />
         <Events />
         <Philosophy />
