@@ -4,7 +4,6 @@ import { About } from "@/components/About";
 import { Directions } from "@/components/Directions";
 import { Programs } from "@/components/Programs";
 import { Events } from "@/components/Events";
-import { Founder } from "@/components/Founder";
 import { Philosophy } from "@/components/Philosophy";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -21,7 +20,6 @@ export default function Home() {
         <Directions />
         <Programs />
         <Events />
-        <Founder />
         <Philosophy />
         <Contact />
       </main>
