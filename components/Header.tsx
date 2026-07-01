@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { NAV_LINKS } from "@/lib/content";
 import { cn } from "@/lib/asset";
 
@@ -41,8 +40,7 @@ export function Header() {
           scrolled ? "h-16" : "h-20",
         )}
       >
-        <a href="#hero" className="group flex items-center gap-3" aria-label="AMRITA ACADEMY — наверх">
-          <AnimatedLogo className="h-11 w-11 shrink-0" spin />
+        <a href="#hero" className="group flex items-center" aria-label="AMRITA ACADEMY — наверх">
           <span className="font-display text-lg font-medium tracking-wide text-ink">
             AMRITA <span className="text-gold-deep">ACADEMY</span>
           </span>
