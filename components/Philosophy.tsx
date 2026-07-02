@@ -45,16 +45,8 @@ export function Philosophy() {
             {PHILOSOPHY.eyebrow}
           </span>
 
-          {/* Large decorative quotation mark */}
-          <span
-            aria-hidden="true"
-            className="mt-8 font-display text-7xl leading-none text-gold/40 sm:text-8xl"
-          >
-            &ldquo;
-          </span>
-
           {/* The statement */}
-          <blockquote className="-mt-4 text-balance font-display text-3xl font-medium leading-snug text-ivory sm:text-4xl lg:text-5xl">
+          <blockquote className="mt-9 text-balance font-display text-3xl font-medium leading-snug text-ivory sm:text-4xl lg:text-5xl">
             {PHILOSOPHY.quote}
           </blockquote>
 
