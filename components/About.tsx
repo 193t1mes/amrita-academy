@@ -20,7 +20,7 @@ export function About() {
     >
       <div className="container relative">
         {/* 3-column composition (above the wordmark) */}
-        <div className="relative z-10 grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+        <div className="relative z-10 grid items-start gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           {/* LEFT — spaces */}
           <Reveal className="order-2 flex flex-col gap-5 lg:order-1 lg:items-start">
             <h2 className="display-2">{SPACES.title}</h2>

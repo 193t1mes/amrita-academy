@@ -196,9 +196,6 @@
   backface-visibility: hidden;
   transform: translateZ(0);
 }
-.reviews-viewport:hover .reviews-marquee {
-  animation-play-state: paused;
-}
 
 /* Respect reduced-motion: drop transforms/animations for sensitive users. */
 @media (prefers-reduced-motion: reduce) {
