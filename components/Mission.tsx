@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/Reveal";
-import { TextReveal } from "@/components/TextReveal";
+import { MissionText } from "@/components/MissionText";
 import { MISSION } from "@/lib/content";
 import { asset } from "@/lib/asset";
 
@@ -39,23 +39,8 @@ export function Mission() {
             <h2 className="display-2 mt-7 text-white">{MISSION.title}</h2>
           </Reveal>
 
-          <TextReveal
-            text={MISSION.lead}
-            className="mt-8 max-w-2xl font-display text-xl font-normal italic leading-snug text-white sm:text-2xl"
-          />
-
-          <Reveal delay={0.15}>
-            <span className="mt-10 block h-px w-16 bg-gold/60" />
-          </Reveal>
-
-          <div className="mt-10 flex max-w-2xl flex-col gap-5">
-            {MISSION.paragraphs.map((p) => (
-              <TextReveal
-                key={p}
-                text={p}
-                className="font-body text-base font-light leading-relaxed text-white sm:text-[17px]"
-              />
-            ))}
+          <div className="mt-8 w-full">
+            <MissionText />
           </div>
         </div>
       </div>
