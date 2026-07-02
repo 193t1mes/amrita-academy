@@ -1,9 +1,49 @@
 import { SectionHeading } from "@/components/primitives";
-import { TextReveal } from "@/components/TextReveal";
-import { REVIEWS, REVIEWS_SECTION } from "@/lib/content";
+import { REVIEWS, REVIEWS_SECTION, type Review } from "@/lib/content";
 
-/** Testimonials — quotes reveal word-by-word (Arc-style) on scroll. */
+function Stars() {
+  return (
+    <div className="flex gap-0.5 text-gold" aria-label="Оценка 5 из 5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span key={i} aria-hidden="true" className="text-sm leading-none">
+          ★
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ReviewCard({ r }: { r: Review }) {
+  return (
+    <figure className="flex w-[330px] shrink-0 flex-col rounded-2xl border border-line bg-ivory/80 p-7 shadow-[0_20px_60px_-42px_rgba(34,30,24,0.28)]">
+      <div className="flex items-center gap-3.5">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-mist font-display text-lg font-medium text-gold-deep">
+          {r.name.charAt(0)}
+        </span>
+        <div className="min-w-0">
+          <div className="font-display text-base text-ink">{r.name}</div>
+          <div className="mt-0.5 truncate font-body text-[11px] uppercase tracking-wide2 text-gold-deep">
+            {r.meta}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <Stars />
+      </div>
+
+      <blockquote className="mt-3 font-body text-sm font-light leading-relaxed text-ink-soft">
+        {r.quote}
+      </blockquote>
+    </figure>
+  );
+}
+
+/** Testimonials — a single-row, right→left infinite marquee. */
 export function Reviews() {
+  // Duplicate the list so the -50% loop is seamless.
+  const track = [...REVIEWS, ...REVIEWS];
+
   return (
     <section id="reviews" className="section-y relative overflow-hidden bg-canvas">
       <div className="pointer-events-none absolute -left-32 top-1/4 h-[26rem] w-[26rem] bg-radial-gold" />
@@ -15,32 +55,21 @@ export function Reviews() {
           title={REVIEWS_SECTION.title}
           intro={REVIEWS_SECTION.intro}
         />
+      </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 md:mt-20 lg:grid-cols-3">
-          {REVIEWS.map((r) => (
-            <figure
-              key={r.name}
-              className="flex h-full flex-col rounded-3xl border border-line bg-ivory/70 p-8 shadow-[0_24px_70px_-40px_rgba(34,30,24,0.22)]"
-            >
-              <span
-                aria-hidden="true"
-                className="font-display text-5xl leading-none text-gold-soft"
-              >
-                &ldquo;
-              </span>
-              <blockquote className="mt-1 flex-1">
-                <TextReveal
-                  text={r.quote}
-                  className="font-body text-[15px] font-light leading-relaxed text-ink"
-                />
-              </blockquote>
-              <figcaption className="mt-6 border-t border-line pt-5">
-                <div className="font-display text-lg text-ink">{r.name}</div>
-                <div className="mt-1 font-body text-xs uppercase tracking-wide2 text-gold-deep">
-                  {r.meta}
-                </div>
-              </figcaption>
-            </figure>
+      {/* Full-width marquee with soft edge fade */}
+      <div
+        className="reviews-viewport relative mt-16 overflow-hidden md:mt-20"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)",
+          maskImage:
+            "linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)",
+        }}
+      >
+        <div className="reviews-marquee flex w-max gap-6 px-6">
+          {track.map((r, i) => (
+            <ReviewCard key={`${r.name}-${i}`} r={r} />
           ))}
         </div>
       </div>

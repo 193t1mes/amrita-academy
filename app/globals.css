@@ -181,6 +181,22 @@
   }
 }
 
+/* Reviews — infinite horizontal marquee (right → left), pause on hover. */
+@keyframes reviews-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.reviews-marquee {
+  animation: reviews-marquee 55s linear infinite;
+}
+.reviews-viewport:hover .reviews-marquee {
+  animation-play-state: paused;
+}
+
 /* Respect reduced-motion: drop transforms/animations for sensitive users. */
 @media (prefers-reduced-motion: reduce) {
   html {
