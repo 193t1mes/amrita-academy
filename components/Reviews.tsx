@@ -15,7 +15,7 @@ function Stars() {
 
 function ReviewCard({ r }: { r: Review }) {
   return (
-    <figure className="flex w-[330px] shrink-0 flex-col rounded-2xl border border-line bg-ivory/80 p-7 shadow-[0_20px_60px_-42px_rgba(34,30,24,0.28)]">
+    <figure className="mr-6 flex w-[330px] shrink-0 flex-col rounded-2xl border border-line bg-ivory p-7 shadow-[0_20px_60px_-42px_rgba(34,30,24,0.28)]">
       <div className="flex items-center gap-3.5">
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-mist font-display text-lg font-medium text-gold-deep">
           {r.name.charAt(0)}
@@ -39,9 +39,12 @@ function ReviewCard({ r }: { r: Review }) {
   );
 }
 
-/** Testimonials — a single-row, right→left infinite marquee. */
+/**
+ * Testimonials — one row, seamless right→left marquee (GPU-composited, always
+ * running). Edge fades via static gradients; pause on hover.
+ */
 export function Reviews() {
-  // Duplicate the list so the -50% loop is seamless.
+  // Duplicate so the -50% loop is exactly one copy → seamless.
   const track = [...REVIEWS, ...REVIEWS];
 
   return (
@@ -57,17 +60,13 @@ export function Reviews() {
         />
       </div>
 
-      {/* Full-width marquee with soft edge fade */}
-      <div
-        className="reviews-viewport relative mt-16 overflow-hidden md:mt-20"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)",
-          maskImage:
-            "linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)",
-        }}
-      >
-        <div className="reviews-marquee flex w-max gap-6 px-6">
+      {/* Full-width marquee viewport */}
+      <div className="reviews-viewport relative mt-16 overflow-hidden md:mt-20">
+        {/* Static edge fades (no repaint on the moving track) */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-canvas to-transparent sm:w-28" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-canvas to-transparent sm:w-28" />
+
+        <div className="reviews-marquee flex w-max">
           {track.map((r, i) => (
             <ReviewCard key={`${r.name}-${i}`} r={r} />
           ))}

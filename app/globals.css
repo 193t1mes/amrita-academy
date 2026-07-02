@@ -192,6 +192,9 @@
 }
 .reviews-marquee {
   animation: reviews-marquee 55s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 .reviews-viewport:hover .reviews-marquee {
   animation-play-state: paused;
